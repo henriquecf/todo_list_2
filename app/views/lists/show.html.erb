@@ -13,7 +13,7 @@
 </dl>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
-              lists_path, :class => 'btn btn-default'  %>
+              user_lists_path(@list.user), :class => 'btn btn-default'  %>
 <%= link_to t('.edit', :default => t("helpers.links.edit")),
               edit_list_path(@list), :class => 'btn btn-default' %>
 <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
