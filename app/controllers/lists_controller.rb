@@ -38,7 +38,10 @@ class ListsController < ApplicationController
 
   def destroy
     @list.destroy
-    respond_with(@list)
+
+    respond_to do |format|
+      format.html { redirect_to user_lists_path(current_user), notice: 'List was successfully destroyed.' }
+    end
   end
 
   protected

@@ -200,7 +200,7 @@ RSpec.describe ListsController, :type => :controller do
     it "redirects to the lists list" do
       list = List.create! valid_attributes
       delete :destroy, {:id => list.to_param}, valid_session
-      expect(response).to redirect_to(lists_url)
+      expect(response).to redirect_to(user_lists_path(@user))
     end
 
     it "should not let another user delete" do
