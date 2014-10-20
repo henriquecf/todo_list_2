@@ -16,6 +16,17 @@ When(/^I check "(.*?)"$/) do |option|
   check option
 end
 
-Then(/^I list named "(.*?)" should have been created$/) do |name|
-  expect(List.where(name: name)).not_to be_empty
+When(/^I find "(.*?)" number (\d+) and fill in with "(.*?)"$/) do |selector, position, value|
+  all(selector).each do |a|
+    a.value = value
+  end
+end
+
+Then(/^a list named "(.*?)" should have been created$/) do |name|
+  @list = List.where(name: name).first
+  expect(@list).not_to be_nil
+end
+
+Then(/^that list should have (\d+) tasks assigned to it$/) do |number_of_tasks|
+  expect(@list.tasks.size).to eq(number_of_tasks.to_i)
 end

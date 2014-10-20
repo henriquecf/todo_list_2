@@ -4,5 +4,9 @@
   <%= f.input :is_private %>
   <%= error_span(@list[:is_private]) %>
 
+  <%= f.simple_fields_for :tasks do |builder| %>
+    <%= builder.input :task_name %>
+  <% end %>
+
   <%= f.button :submit, :class => 'btn-primary' %>
 <% end %>

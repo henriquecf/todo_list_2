@@ -18,6 +18,7 @@ class ListsController < ApplicationController
 
   def new
     @list = List.new
+    3.times { @list.tasks.build }
     respond_with(@list)
   end
 
@@ -61,6 +62,6 @@ class ListsController < ApplicationController
     end
 
     def list_params
-      params.require(:list).permit(:name, :is_private)
+      params.require(:list).permit(:name, :is_private, tasks_attributes: [:task_name])
     end
 end
