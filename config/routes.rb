@@ -1,4 +1,15 @@
 Rails.application.routes.draw do
+  root to: 'home#index'
+  get 'home/index'
+
+  resources :lists, except: [:index]
+
+  devise_for :users, path: 'accounts'
+
+  resources :users, only: [] do
+    resources :lists, only: [:index]
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
