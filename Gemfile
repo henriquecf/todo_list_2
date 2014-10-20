@@ -50,3 +50,5 @@ end
 gem 'simple_form'
 gem 'devise'
 gem 'responders'
+
+gem "twitter-bootstrap-rails"
