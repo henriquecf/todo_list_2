@@ -24,4 +24,4 @@ Feature: Create todo list
   @wip
   Scenario: add task field dinamically
     When I click "Add new task"
-    Then there should be 2 "Task name" fields
+    Then there should be 2 nested fields

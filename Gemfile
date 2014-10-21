@@ -52,3 +52,5 @@ gem 'devise'
 gem 'responders'
 
 gem "twitter-bootstrap-rails"
+
+gem "cocoon"

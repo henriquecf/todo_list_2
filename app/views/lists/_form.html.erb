@@ -4,9 +4,15 @@
   <%= f.input :is_private %>
   <%= error_span(@list[:is_private]) %>
 
-  <%= f.simple_fields_for :tasks do |builder| %>
-    <%= builder.input :task_name %>
+  <h3>Tasks</h3>
+  <div id="tasks">
+  <%= f.simple_fields_for :tasks do |task| %>
+    <%= render 'task_fields', f: task %>
   <% end %>
+  </div>
+    <div class="links">
+      <%= link_to_add_association 'Add new task', f, :tasks %>
+    </div>
 
-  <%= f.button :submit, :class => 'btn-primary' %>
+  <%= f.submit %>
 <% end %>

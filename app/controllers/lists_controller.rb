@@ -62,6 +62,6 @@ class ListsController < ApplicationController
     end
 
     def list_params
-      params.require(:list).permit(:name, :is_private, tasks_attributes: [:task_name])
+      params.require(:list).permit(:name, :is_private, tasks_attributes: [:id, :task_name, :done, :_destroy])
     end
 end
