@@ -22,6 +22,7 @@ Feature: Create todo list
     And that list should have 1 tasks assigned to it
 
   @wip
+  @javascript
   Scenario: add task field dinamically
     When I click "Add new task"
     Then there should be 2 nested fields

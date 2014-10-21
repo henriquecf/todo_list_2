@@ -54,3 +54,5 @@ gem 'responders'
 gem "twitter-bootstrap-rails"
 
 gem "cocoon"
+
+gem 'poltergeist'

@@ -26,6 +26,5 @@ Then(/^that list should have (\d+) tasks assigned to it$/) do |number_of_tasks|
 end
 
 Then(/^there should be (\d+) nested fields$/) do |number_of_fields|
-  sleep 1
-  expect(all('.nested-fields').size).to eq(2)
+  expect(all('.nested-fields').size).to eq(number_of_fields.to_i)
 end
