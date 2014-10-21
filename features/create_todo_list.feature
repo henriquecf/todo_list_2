@@ -21,8 +21,14 @@ Feature: Create todo list
     Then a list named "My list" should have been created
     And that list should have 1 tasks assigned to it
 
-  @wip
   @javascript
   Scenario: add task field dinamically
+    Given there should be 1 nested fields
     When I click "Add new task"
     Then there should be 2 nested fields
+
+  @javascript
+  Scenario: add task field dinamically
+    Given there should be 1 nested fields
+    When I click "Remove task"
+    Then there should be 0 nested fields
