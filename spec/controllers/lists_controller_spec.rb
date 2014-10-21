@@ -86,6 +86,11 @@ RSpec.describe ListsController, :type => :controller do
       get :new, {}, valid_session
       expect(assigns(:list)).to be_a_new(List)
     end
+
+    it "assigns a new task in @list.tasks" do
+      get :new, {}, valid_session
+      expect(assigns(:list).tasks.first).to be_a_new(Task)
+    end
   end
 
   describe "GET edit" do
