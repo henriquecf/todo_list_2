@@ -14,10 +14,14 @@ Feature: Create todo list
     And I click "Create"
     Then a list named "Market list" should have been created
 
-  @wip
   Scenario: create list with task
     When I fill in "Name" with "My list"
-    And I find "Task name" number 0 and fill in with "My first task"
+    And I fill in "Task name" with "My task"
     And I click "Create"
     Then a list named "My list" should have been created
-    And that list should have 3 tasks assigned to it
+    And that list should have 1 tasks assigned to it
+
+  @wip
+  Scenario: add task field dinamically
+    When I click "Add new task"
+    Then there should be 2 "Task name" fields

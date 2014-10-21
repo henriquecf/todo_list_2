@@ -8,8 +8,11 @@
   <dd><%= @list.name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:is_private) %>:</strong></dt>
   <dd><%= @list.is_private %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:user_id) %>:</strong></dt>
-  <dd><%= @list.user_id %></dd>
+  <ol>
+    <% @list.tasks.each do |task| %>
+      <li><%= task.task_name %></li>
+    <% end %>
+  </ol>
 </dl>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),

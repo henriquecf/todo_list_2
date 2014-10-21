@@ -18,7 +18,7 @@ class ListsController < ApplicationController
 
   def new
     @list = List.new
-    3.times { @list.tasks.build }
+    @list.tasks.build
     respond_with(@list)
   end
 
