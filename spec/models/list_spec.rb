@@ -17,6 +17,7 @@ RSpec.describe List, :type => :model do
       @task = Task.new(task_name: 'task')
       @list = List.create!(name: 'list', user: @user, tasks: [@task])
     end
+
     it "should allow creation of tasks within a list" do
       expect(@list.reload.tasks.size).to eq(1)
     end
@@ -25,6 +26,17 @@ RSpec.describe List, :type => :model do
       expect(Task.exists?(@task)).to be_truthy
       @list.destroy
       expect(Task.exists?(@task)).to be_falsey
+    end
+  end
+
+  describe "favorites" do
+    it "should destroy favorites when their lists are destroyed" do
+      user = User.create!(email: 'email@example.com', password: 'test1234')
+      list = List.create!(name: 'list', user: user)
+      favorite = list.favorites.create!(user: user)
+      expect(Favorite.exists?(favorite)).to be_truthy
+      list.destroy
+      expect(Favorite.exists?(favorite)).to be_falsey
     end
   end
 end
