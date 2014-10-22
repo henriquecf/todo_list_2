@@ -3,11 +3,6 @@ require "rails_helper"
 RSpec.describe ListsController, :type => :routing do
   describe "routing" do
 
-    it "routes to #index" do
-      skip 'Needs to fix this route'
-      expect(:get => "/lists").to route_to("lists#index")
-    end
-
     it "routes to #new" do
       expect(:get => "/lists/new").to route_to("lists#new")
     end
