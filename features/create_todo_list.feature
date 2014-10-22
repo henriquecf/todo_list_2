@@ -13,6 +13,7 @@ Feature: Create todo list
     And I check "list_is_private"
     And I click "Create"
     Then a list named "Market list" should have been created
+    And the list should be private
 
   Scenario: create list with task
     When I fill in "Name" with "My list"

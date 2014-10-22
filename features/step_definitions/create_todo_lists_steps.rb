@@ -28,3 +28,7 @@ end
 Then(/^there should be (\d+) nested fields$/) do |number_of_fields|
   expect(all('.nested-fields').size).to eq(number_of_fields.to_i)
 end
+
+Then(/^the list should be private$/) do
+  expect(@list.is_private).to be_truthy
+end
