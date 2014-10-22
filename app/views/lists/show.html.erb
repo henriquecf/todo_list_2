@@ -8,10 +8,10 @@
   <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
   <dd><%= @list.name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:is_private) %>:</strong></dt>
-  <dd><%= @list.is_private %></dd>
-  <ol>
+  <dd><%= @list.is_private ? "Yes" : "No" %></dd>
+  <ol class="list-group">
     <% @list.tasks.each do |task| %>
-      <li><%= task.task_name %></li>
+      <li class="list-group-item"><%= task.task_name %></li>
     <% end %>
   </ol>
 </dl>
