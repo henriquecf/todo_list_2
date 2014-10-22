@@ -1,6 +1,7 @@
 class ListsController < ApplicationController
   before_action :set_list, only: [:show, :edit, :update, :destroy, :mark_as_favorite]
   before_action :limit_private_lists, only: [:show, :edit, :update, :destroy]
+  before_action :set_favorite, only: [:show, :mark_as_favorite]
 
   def index
     user = User.find(params[:user_id])
@@ -13,6 +14,7 @@ class ListsController < ApplicationController
   end
 
   def show
+    @favorited = @favorite.marked
     respond_with(@list)
   end
 
@@ -46,8 +48,9 @@ class ListsController < ApplicationController
   end
 
   def mark_as_favorite
-    @list.favorites.create!(user: current_user)
-    redirect_to @list, notice: "Marked as favorite"
+    @favorite.mark
+    message = @favorite.marked ? 'Marked as favorite' : 'Removed from favorites'
+    redirect_to @list, notice: message
   end
 
   protected
@@ -68,5 +71,9 @@ class ListsController < ApplicationController
 
     def list_params
       params.require(:list).permit(:name, :is_private, tasks_attributes: [:id, :task_name, :done, :_destroy])
+    end
+
+    def set_favorite
+      @favorite = @list.favorites.find_or_create_by(user: current_user)
     end
 end

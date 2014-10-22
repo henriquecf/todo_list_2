@@ -79,6 +79,21 @@ RSpec.describe ListsController, :type => :controller do
       get :show, {:id => list.to_param}, valid_session
       expect(response).to redirect_to(user_lists_path(user))
     end
+
+    it "should assign favorited as false by default" do
+      list = List.create! valid_attributes
+      get :show, {:id => list.to_param}, valid_session
+      expect(assigns(:favorited)).to be_falsey
+    end
+
+    it "should assign favorited as true when it was marked" do
+      list = List.create! valid_attributes
+      fav = list.favorites.find_or_create_by(user: @user)
+      fav.mark
+      fav.save!
+      get :show, {id: list.to_param}, valid_session
+      expect(assigns(:favorited)).to be_truthy
+    end
   end
 
   describe "GET new" do
@@ -218,7 +233,6 @@ RSpec.describe ListsController, :type => :controller do
 
   describe "#mark_as_favorite" do
     before :each do
-      @user = User.first
       @list = List.create! valid_attributes
     end
     it "should assign list to user favorites" do

@@ -1,7 +1,7 @@
 <%- model_class = List -%>
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
-  <p><%= link_to 'Include to favorites', favorite_path(@list.id) %></p>
+  <p><%= link_to @favorited ? 'Remove from favorites' : 'Include to favorites', favorite_path(@list.id) %></p>
 </div>
 
 <dl class="dl-horizontal">
