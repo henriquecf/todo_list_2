@@ -1,8 +1,8 @@
 <%= simple_form_for @list, :html => { :class => 'form-inline' } do |f| %>
   <%= f.text_field :name, :placeholder => "Name" %>
   <%= error_span(@list[:name]) %>
-  <%= check_box_tag :is_private %>
-  <%= label_tag :is_private, "Is private" %>
+  <%= f.check_box :is_private %>
+  <%= label :is_private, "Is private" %>
   <%= error_span(@list[:is_private]) %>
 
   <h3>Tasks</h3>

@@ -26,6 +26,7 @@
       <ul class="nav navbar-nav">
         <li><a href="<%= user_signed_in? ? user_lists_path(current_user) : new_user_session_path %>">My Lists</a></li>
         <li><a href="<%= favorites_path %>">Favorites</a></li>
+        <li><a href="<%= public_lists_path %>">Public Lists</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>

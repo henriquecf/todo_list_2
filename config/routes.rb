@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   match '/lists/:id/mark_as_favorite', controller: "lists", action: "mark_as_favorite", as: 'favorite', via: [:get]
   match '/favorites', controller: "lists", action: "favorites", as: 'favorites', via: [:get]
+  match '/public', controller: "lists", action: "public", as: 'public_lists', via: [:get]
 
   devise_for :users, path: 'accounts'
 

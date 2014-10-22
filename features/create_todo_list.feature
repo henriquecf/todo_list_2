@@ -10,7 +10,7 @@ Feature: Create todo list
 
   Scenario: Successful creation
     When I fill in "Name" with "Market list"
-    And I check "Is private"
+    And I check "list_is_private"
     And I click "Create"
     Then a list named "Market list" should have been created
 

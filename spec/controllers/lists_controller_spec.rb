@@ -275,4 +275,16 @@ RSpec.describe ListsController, :type => :controller do
       expect(assigns(:lists)).to eq([@list2])
     end
   end
+
+  describe "GET public" do
+    it "should assign public lists to @lists" do
+      List.create! valid_attributes
+      list2 = List.create! valid_attributes
+      List.create! valid_attributes
+      list2.is_private = false
+      list2.save
+      get :public, {}, valid_session
+      expect(assigns(:lists)).to eq([list2])
+    end
+  end
 end

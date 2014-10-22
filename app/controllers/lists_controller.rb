@@ -19,6 +19,12 @@ class ListsController < ApplicationController
     render 'lists'
   end
 
+  def public
+    @title = 'Public lists'
+    @lists = List.where(is_private: false)
+    render 'lists'
+  end
+
   def show
     @favorited = @favorite.marked
     respond_with(@list)
