@@ -5,22 +5,16 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:is_private) %></th>
-      <th><%= model_class.human_attribute_name(:user_id) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th>Status</th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @lists.each do |list| %>
       <tr>
-        <td><%= link_to list.id, list_path(list) %></td>
-        <td><%= list.name %></td>
-        <td><%= list.is_private %></td>
-        <td><%= list.user_id %></td>
-        <td><%=l list.created_at %></td>
+        <td><%= link_to list.name, list_path(list) %></td>
+        <td><%= list.is_private ? 'Private' : 'Public' %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_list_path(list), :class => 'btn btn-default btn-xs' %>
