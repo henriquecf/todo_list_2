@@ -216,4 +216,19 @@ RSpec.describe ListsController, :type => :controller do
     end
   end
 
+  describe "#mark_as_favorite" do
+    before :each do
+      @user = User.first
+      @list = List.create! valid_attributes
+    end
+    it "should assign list to user favorites" do
+      get :mark_as_favorite, id: @list.id
+      expect(@user.favorites).to eq(@list.favorites)
+    end
+    it "should redirect back to the list" do
+      get :mark_as_favorite, id: @list.id
+      expect(response).to redirect_to(list_path(@list))
+    end
+  end
+
 end

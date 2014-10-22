@@ -7,3 +7,7 @@ end
 Then(/^the list should be in my favorites list$/) do
   expect(@user.favorites).to include(@list)
 end
+
+Then(/^I should be in the list path$/) do
+  expect(current_path).to eq("/lists/#{@list.id}")
+end

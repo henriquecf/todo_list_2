@@ -10,3 +10,4 @@ Feature: Mark list as favorite
     And I am in the path of a public list from another user
     When I click "Mark as favorite"
     Then the list should be in my favorites list
+    And I should be in the list path

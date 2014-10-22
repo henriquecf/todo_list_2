@@ -1,5 +1,5 @@
 class ListsController < ApplicationController
-  before_action :set_list, only: [:show, :edit, :update, :destroy]
+  before_action :set_list, only: [:show, :edit, :update, :destroy, :mark_as_favorite]
   before_action :limit_private_lists, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -43,6 +43,11 @@ class ListsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to user_lists_path(current_user), notice: 'List was successfully destroyed.' }
     end
+  end
+
+  def mark_as_favorite
+    @list.favorites.create!(user: current_user)
+    redirect_to @list, notice: "Marked as favorite"
   end
 
   protected
