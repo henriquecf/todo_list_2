@@ -1,0 +1,18 @@
+<%- model_class = List -%>
+<div class="page-header">
+  <h1><%= @title %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:name) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @lists.each do |list| %>
+      <tr>
+        <td><%= link_to list.name, list_path(list) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

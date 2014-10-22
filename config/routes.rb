@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :lists, except: [:index]
 
   match '/lists/:id/mark_as_favorite', controller: "lists", action: "mark_as_favorite", as: 'favorite', via: [:get]
+  match '/favorites', controller: "lists", action: "favorites", as: 'favorites', via: [:get]
 
   devise_for :users, path: 'accounts'
 

@@ -62,7 +62,7 @@ RSpec.describe ListsController, :type => :controller do
       public_list = List.create!({name: "public list", is_private: false, user: @user})
       login_user "another@example.com"
       get :index, {user_id: @user.id}, valid_session
-      expect(assigns(@lists)["lists"]).to eq([public_list])
+      expect(assigns(:lists)).to eq([public_list])
     end
   end
 
@@ -231,7 +231,7 @@ RSpec.describe ListsController, :type => :controller do
     end
   end
 
-  describe "#mark_as_favorite" do
+  describe "GET mark_as_favorite" do
     before :each do
       @list = List.create! valid_attributes
     end
@@ -245,4 +245,34 @@ RSpec.describe ListsController, :type => :controller do
     end
   end
 
+  describe "GET favorites" do
+    before :each do
+      @list = List.create! valid_attributes
+      @list2 = List.create! valid_attributes
+      @list3 = List.create! valid_attributes
+    end
+
+    it "should retrive my favorites" do
+      fav = @list.favorites.find_or_create_by(user: @user)
+      fav.mark
+      get :favorites, {}, valid_session
+      expect(assigns(:lists)).to eq([@list])
+    end
+
+    it "should not retrieve lists that are not marked" do
+      @list.favorites.find_or_create_by(user: @user)
+      get :favorites, {}, valid_session
+      expect(assigns(:lists)).to eq([])
+    end
+
+    it "should not retrieve lists from other users" do
+      fav = @list.favorites.find_or_create_by(user: @user)
+      fav.mark
+      user = login_user 'other@example.com'
+      fav2 = @list2.favorites.find_or_create_by(user: user)
+      fav2.mark
+      get :favorites, {}, valid_session
+      expect(assigns(:lists)).to eq([@list2])
+    end
+  end
 end

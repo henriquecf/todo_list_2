@@ -13,6 +13,12 @@ class ListsController < ApplicationController
     respond_with(@lists)
   end
 
+  def favorites
+    @title = 'Favorites'
+    @lists = current_user.favorites.where(marked: true).collect { |fav| fav.list }
+    render 'lists'
+  end
+
   def show
     @favorited = @favorite.marked
     respond_with(@list)
