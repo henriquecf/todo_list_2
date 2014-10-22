@@ -1,7 +1,8 @@
-<%= simple_form_for @list, :html => { :class => 'form-horizontal' } do |f| %>
-  <%= f.input :name %>
+<%= simple_form_for @list, :html => { :class => 'form-inline' } do |f| %>
+  <%= f.text_field :name, :placeholder => "Name" %>
   <%= error_span(@list[:name]) %>
-  <%= f.input :is_private %>
+  <%= check_box_tag :is_private %>
+  <%= label_tag :is_private, "Is private" %>
   <%= error_span(@list[:is_private]) %>
 
   <h3>Tasks</h3>
@@ -10,9 +11,11 @@
     <%= render 'task_fields', f: task %>
   <% end %>
   </div>
-    <div class="links">
-      <%= link_to_add_association 'Add new task', f, :tasks %>
-    </div>
 
-  <%= f.submit %>
+    <div class="links">
+      <br>
+      <%= link_to_add_association 'Add new task', f, :tasks, :class => "btn btn-primary" %>
+    </div>
+<hr></hr>
+<%= f.submit :class => "btn btn-success" %>
 <% end %>

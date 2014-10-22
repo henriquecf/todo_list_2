@@ -1,5 +1,5 @@
-<div class="nested-fields">
-  <%= f.input :task_name %>
-  <%= f.input :done, as: :boolean %>
-  <%= link_to_remove_association 'Remove task', f %>
+<div class="nested-fields" style="margin: 5px;">
+  <%= f.check_box :done, as: :boolean %>
+  <%= f.text_field :task_name, :placeholder => "Task name", :size => 50 %>
+  <%= link_to_remove_association 'Remove task', f , :class => "btn btn-danger btn-xs" %>
 </div>
