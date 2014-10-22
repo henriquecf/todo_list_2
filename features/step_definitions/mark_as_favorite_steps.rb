@@ -5,7 +5,7 @@ Given(/^I am in the path of a public list from another user$/) do
 end
 
 Then(/^the list should be in my favorites list$/) do
-  expect(@user.favorites).to include(@list)
+  expect(@user.favorites).to eq(@list.favorites)
 end
 
 Then(/^I should be in the list path$/) do
