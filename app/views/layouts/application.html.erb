@@ -18,7 +18,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <p class="navbar-brand" style="margin-bottom: 0;">To-Do Lists</p>
+      <a class="navbar-brand" href="/">To-Do Lists</>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -27,7 +27,7 @@
         <li><a href="<%= user_signed_in? ? user_lists_path(current_user) : new_user_session_path %>">My Lists</a></li>
         <li><a href="#">Favorites</a></li>
       </ul>
-      <ul class="nav navbar-right">
+      <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
           <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
         <% end %>
