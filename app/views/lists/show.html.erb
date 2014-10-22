@@ -1,17 +1,13 @@
 <%- model_class = List -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
-  <p><%= link_to @favorited ? 'Remove from favorites' : 'Include to favorites', favorite_path(@list.id) %></p>
+  <h3><%= @list.name %>   <small>(<%= link_to @favorited ? 'Remove from favorites' : 'Include to favorites', favorite_path(@list.id) %>)</small></h3>
+  <p>Private? <%= @list.is_private ? "Yes" : "No" %></p>
 </div>
 
 <dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
-  <dd><%= @list.name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:is_private) %>:</strong></dt>
-  <dd><%= @list.is_private ? "Yes" : "No" %></dd>
   <ol class="list-group">
     <% @list.tasks.each do |task| %>
-      <li class="list-group-item"><%= task.task_name %></li>
+      <li class="list-group-item"><%= task.done ? "<s>#{task.task_name}</s>".html_safe : task.task_name %></li>
     <% end %>
   </ol>
 </dl>
