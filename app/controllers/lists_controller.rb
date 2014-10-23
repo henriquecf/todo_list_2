@@ -5,9 +5,9 @@ class ListsController < ApplicationController
   before_action :set_favorite, only: [:show, :mark_as_favorite]
 
   def index
-    user = User.find(params[:user_id])
-    condition = {user: user}
-    unless user == current_user
+    @user = User.find(params[:user_id])
+    condition = {user: @user}
+    unless @user == current_user
       condition.merge!({is_private: false})
     end
     @lists = List.where(condition)

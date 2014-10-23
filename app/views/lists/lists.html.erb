@@ -13,7 +13,7 @@
     <% @lists.each do |list| %>
       <tr>
         <td><%= link_to list.name, list_path(list) %></td>
-        <td><%= list.user.email %></td>
+        <td><%= link_to list.user.email, user_lists_path(list.user) %></td>
       </tr>
     <% end %>
   </tbody>
