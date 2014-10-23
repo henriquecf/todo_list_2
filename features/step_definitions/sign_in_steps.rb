@@ -7,6 +7,5 @@ Given(/^I am in sign in page$/) do
 end
 
 Then(/^I should be logged in$/) do
-  expect(current_path).to eq('/')
   expect(page).to have_content('Signed in successfully.')
 end

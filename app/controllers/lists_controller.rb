@@ -1,6 +1,7 @@
 class ListsController < ApplicationController
   before_action :set_list, only: [:show, :edit, :update, :destroy, :mark_as_favorite]
-  before_action :limit_private_lists, only: [:show, :edit, :update, :destroy]
+  before_action :limit_private_lists, only: [:show]
+  before_action :only_owner, only: [:edit, :update, :destroy]
   before_action :set_favorite, only: [:show, :mark_as_favorite]
 
   def index
@@ -74,6 +75,10 @@ class ListsController < ApplicationController
           false
         end
       end
+    end
+
+    def only_owner
+      redirect_to user_lists_path(current_user), alert: "Unauthorized access" and return unless current_user == @list.user
     end
 
   private
